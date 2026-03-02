@@ -1,0 +1,28 @@
+{
+  "name": "noisy-channel",
+  "version": "0.1.0",
+  "description": "A fun terminal adventure agent with ASCII art characters, cloning, power-ups, and animations",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "noisy-channel": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "start": "node dist/index.js",
+    "demo": "node dist/demo.js"
+  },
+  "keywords": ["tui", "terminal", "ascii-art", "animation", "agent", "ink", "cli"],
+  "author": "akashgit",
+  "license": "MIT",
+  "dependencies": {
+    "ink": "^5.2.0",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "tsup": "^8.4.0",
+    "typescript": "^5.7.3"
+  }
+}
