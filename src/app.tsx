@@ -453,6 +453,7 @@ export interface AppProps {
 
 export function App({ demoAutoStart = false }: AppProps) {
   const { exit } = useApp();
+  const isTTY = Boolean(process.stdin.isTTY);
   const [state, dispatch] = useReducer(gameReducer, initialState);
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const uptimeRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -520,7 +521,7 @@ export function App({ demoAutoStart = false }: AppProps) {
     demoRef.current.ticksWaited = 0;
   }, []);
 
-  // Keyboard input
+  // Keyboard input (only when TTY supports raw mode)
   useInput((input, key) => {
     switch (input) {
       case 't':
@@ -577,7 +578,7 @@ export function App({ demoAutoStart = false }: AppProps) {
         dispatch({ type: 'LOG', text: 'State: talking' });
         break;
     }
-  });
+  }, { isActive: isTTY });
 
   const colors = getThemeColors(state.theme);
   const spriteFrames = BERRY_SPRITES[state.berryState] || BERRY_SPRITES.idle;
